@@ -13,3 +13,5 @@ COPY . /app
 CMD [ "export FLASK_APP=node.py" ]
 
 CMD [ "flask run" ]
+
+EXPOSE 5000
