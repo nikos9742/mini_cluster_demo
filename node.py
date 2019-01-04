@@ -3,6 +3,7 @@ import requests
 import os
 import time
 import threading
+import math
 from flask import Flask
 app = Flask(__name__)
 
@@ -18,8 +19,19 @@ def activate_job():
                 # export HEAD_STATUS=True
                 # unset HEAD_STATUS
                 temp = get_temperature("localhost:5000", "temp")
+                print("Self temp")
                 print(temp)
                 time.sleep(1)
+                try:
+                    temp1 = get_temperature("node1:5000", "temp")
+                    temp2 = get_temperature("node2:5000", "temp")
+                    temp3 = get_temperature("node3:5000", "temp")
+                    temp4 = get_temperature("node4:5000", "temp")
+                    print("Node temps" + temp1 + temp2 + temp3 + temp4)
+                    print((temp1 + temp2 + temp3 + temp4) / 4)
+                except:
+                    print('Failed to get temp on all 4 nodes')                    
+                print(temp)
 
     thread = threading.Thread(target=run_job)
     thread.start()
