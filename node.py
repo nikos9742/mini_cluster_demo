@@ -7,6 +7,8 @@ import math
 from flask import Flask
 app = Flask(__name__)
 
+
+# Reccurent task
 @app.before_first_request
 def activate_job():
     def run_job():
